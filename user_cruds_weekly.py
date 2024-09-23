@@ -9,7 +9,6 @@ from airflow.operators.python import PythonOperator
 from airflow.exceptions import AirflowSkipException
 
 
-
 INPUT_DIR = '/opt/input/'
 DAILY_AGGS_DIR = '/opt/daily_aggs/'
 OUTPUT_DIR = '/opt/output/'
