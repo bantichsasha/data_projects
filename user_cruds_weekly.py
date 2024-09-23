@@ -30,7 +30,7 @@ def check_files():
         AirflowSkipException: If any input file is missing.
 
     Returns:
-        list: A list of missing aggregates or the filename for yesterday's data.
+        list: A list of missing aggregates.
     """
     missing_inputs = []
     missing_aggs = []
