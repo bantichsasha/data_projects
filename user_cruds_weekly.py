@@ -19,7 +19,7 @@ YESTERDAY = TODAY - timedelta(days=1)
 LAST_WEEK_FILES = [
     (YESTERDAY - timedelta(days=i)).strftime('%Y-%m-%d') + '.csv'
     for i in range(7)
-]
+    ]
 
 
 def check_files():
@@ -120,25 +120,25 @@ dag = DAG(
     schedule_interval='0 4 * * *',
     start_date=datetime(2024, 9, 24),
     catchup=False,
-)
+    )
 
 check_files_task = PythonOperator(
     task_id='check_files',
     python_callable=check_files,
     dag=dag,
-)
+    )
 
 calculate_aggregates_task = PythonOperator(
     task_id='calculate_aggregates',
     python_callable=calculate_aggregates,
     provide_context=True,
     dag=dag,
-)
+    )
 
 delete_extra_files_task = PythonOperator(
     task_id='delete_extra_files',
     python_callable=delete_extra_files,
     dag=dag,
-)
+    )
 
 check_files_task >> calculate_aggregates_task >> delete_extra_files_task
